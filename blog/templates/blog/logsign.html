@@ -1,0 +1,10 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+  <form method="post">
+    {% csrf_token %}
+    <p>Goodbye for now. We hope you come back soon.</p>
+    <button type="Submit">Login</button>
+    <button type="Submit">Signup</button>
+  </form>
+{% endblock %}

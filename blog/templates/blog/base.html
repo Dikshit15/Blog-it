@@ -9,6 +9,21 @@
     </head>
     <body>
     <div class="page-header">
+      {% if user.is_authenticated %}
+      {% if messages %}
+          <ul class="messages">
+          {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+          </ul>
+        {% endif %}
+        <a href="{% url 'logout_view' %}" class="top-menu" title="Logout"><span class="glyphicon glyphicon-log-out"></span></a>
+        <a href="{% url 'post_draft_list' %}" class="top-menu" title="Edit post"><span class="glyphicon glyphicon-edit"></span></a>
+        <a href="{% url 'post_new' %}" class="top-menu" title="Create new post"><span class="glyphicon glyphicon-plus"></span></a>
+      {% else %}
+        <a href="{% url 'login' %}" class="top-menu" title="Login"><span class="glyphicon glyphicon-lock"></span></a>
+        <a href="{% url 'signup' %}" class="top-menu" title="Signup"><span class="glyphicon glyphicon-leaf"></span></a>
+      {% endif %}
         <h1><a href="/">Harry Potter Mania</a></h1>
     </div>
     <div class="content container">
@@ -18,6 +33,9 @@
             {% endblock %}
             </div>
         </div>
+    </div>
+    <div class="page-footer">
+      <p>For more information:<a href="https://www.pottermore.com/">Visit Pottermore!</a></p>
     </div>
 </body>
 </html>

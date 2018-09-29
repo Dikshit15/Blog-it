@@ -4,9 +4,10 @@ h1 a {
 }
 body {
   padding-left: 15px;
+  background-color: lightgreen;
 }
 .page-header{
-  background-color: #ff9400;
+  background-color: black;
   margin-top: 0;
   padding: 20px 20px 20px 40px;
 }
@@ -15,6 +16,20 @@ body {
     color: #ffffff;
     font-size: 36pt;
     text-decoration: none;
+}
+
+.comment {
+    margin: 20px 0px 20px 20px;
+}
+    
+.page-footer{
+  font-size: 12pt;
+  color: black;
+  font-weight: bold;
+  text-align: right;
+  position: absolute;
+  bottom:10px;
+  right:10px;
 }
 
 .content {
@@ -38,9 +53,9 @@ h1, h2, h3, h4 {
 }
 
 .top-menu, .top-menu:hover, .top-menu:visited {
-    color: #ffffff;
+    color: 'Blue';
     float: right;
-    font-size: 26pt;
+    font-size: 28pt;
     margin-right: 20px;
 }
 

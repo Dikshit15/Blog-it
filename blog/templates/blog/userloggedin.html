@@ -1,0 +1,6 @@
+{% block content %}
+  <form method="post">
+    {% csrf_token %}
+    <p>Hey,you need to logout from the existing account before signing up for a new account.</p>
+  </form>
+{% endblock %}
