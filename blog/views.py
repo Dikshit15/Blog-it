@@ -126,8 +126,8 @@ def logout_view(request):
     #return render(request,'blog/userlogout.html',{'form':form})
     logout(request)
     #return render_to_response('/^accounts/login/$',message='Goodbye. Looking forward to seeing you at PotterMania.')
-    messages.info(request,'Goodbye. Looking forward to seeing you at PotterMania.')
-    return redirect('/^accounts/login/$')
+    messages.success(request,'Goodbye. Looking forward to seeing you at PotterMania.',extra_tags='alert')
+    return redirect('signup')
     #    return redirect('signup')
     #print(logout(request))
 

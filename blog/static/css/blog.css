@@ -1,4 +1,4 @@
-h1 a {
+  h1 a {
   color : #FCA205;
   font-family: 'Lobster';
 }
@@ -12,6 +12,36 @@ body {
   padding: 20px 20px 20px 40px;
 }
 
+
+
+.socialProfiles{
+    padding: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    display: flex !important;
+    text-align: center;
+    justify-content: space-around;
+}
+
+.btn-goog:hover{
+    transform: scale(1.5, 1.5);
+    transition: all 300ms 0s;
+}
+.btn-git:hover{
+    transform: scale(1.5, 1.5);
+    transition: all 300ms 0s;
+}
+.btn-linkd:hover{
+    transform: scale(1.5, 1.5);
+    transition: all 300ms 0s;
+}
+
+
+.btn-stack:hover{
+    transform: scale(1.5, 1.5);
+    transition: all 300ms 0s;
+}
+
 .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
     color: #ffffff;
     font-size: 36pt;
@@ -21,7 +51,7 @@ body {
 .comment {
     margin: 20px 0px 20px 20px;
 }
-    
+
 .page-footer{
   font-size: 12pt;
   color: black;

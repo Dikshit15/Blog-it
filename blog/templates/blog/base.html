@@ -8,15 +8,10 @@
         <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     </head>
     <body>
+
     <div class="page-header">
       {% if user.is_authenticated %}
-      {% if messages %}
-          <ul class="messages">
-          {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-          {% endfor %}
-          </ul>
-        {% endif %}
+
         <a href="{% url 'logout_view' %}" class="top-menu" title="Logout"><span class="glyphicon glyphicon-log-out"></span></a>
         <a href="{% url 'post_draft_list' %}" class="top-menu" title="Edit post"><span class="glyphicon glyphicon-edit"></span></a>
         <a href="{% url 'post_new' %}" class="top-menu" title="Create new post"><span class="glyphicon glyphicon-plus"></span></a>
@@ -26,6 +21,13 @@
       {% endif %}
         <h1><a href="/">Harry Potter Mania</a></h1>
     </div>
+    <div class="socialProfiles">
+      <a href="mailto:dikshitmaheshwari15@gmail.com" target="_blank"><img src="https://png.icons8.com/ios/50/000000/google-logo-filled.png" class="btn-goog" alt="G-Mail" height="25" width=auto></a>
+      <a href="https://github.com/Dikshit15" target="_blank"><img src="https://png.icons8.com/ios-glyphs/60/000000/github.png" class="btn-git" alt="Github" height="25" width=auto></a>
+      <a href="https://www.linkedin.com/in/dikshit15/" target="_blank"><img src="https://png.icons8.com/ios-glyphs/60/000000/linkedin-circled.png" class="btn-linkd" alt="LinkedIn" height="25" width=auto></a>
+      <a href="https://stackoverflow.com/users/10178868/dikshit" target="_blank"><img src="https://png.icons8.com/ios/64/000000/stackoverflow-filled.png" class="btn-stack" alt="Stack Overflow" height="25" width=auto></a>
+    </div>
+    <br><br><br>
     <div class="content container">
         <div class="row">
             <div class="col-md-8">

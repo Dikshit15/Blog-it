@@ -1,6 +1,13 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
+  {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+          <b><marquee loop=1 scrolldelay="2"><li class="{{ message.tags }}">{{ message }}</li></marquee></b>
+        {% endfor %}
+    </ul>
+  {% endif %}
   <h2>Sign up</h2>
   <form method="post">
     {% csrf_token %}
