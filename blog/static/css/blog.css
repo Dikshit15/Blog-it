@@ -15,31 +15,31 @@ body {
 
 
 .socialProfiles{
-    padding: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
+    padding: 2px;
+    margin-left: 2px;
+    margin-right: 2px;
     display: flex !important;
-    text-align: center;
+    text-align: left;
     justify-content: space-around;
 }
 
 .btn-goog:hover{
     transform: scale(1.5, 1.5);
-    transition: all 300ms 0s;
+    transition: all 100ms 0s;
 }
 .btn-git:hover{
     transform: scale(1.5, 1.5);
-    transition: all 300ms 0s;
+    transition: all 100ms 0s;
 }
 .btn-linkd:hover{
     transform: scale(1.5, 1.5);
-    transition: all 300ms 0s;
+    transition: all 100ms 0s;
 }
 
 
 .btn-stack:hover{
     transform: scale(1.5, 1.5);
-    transition: all 300ms 0s;
+    transition: all 100ms 0s;
 }
 
 .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {

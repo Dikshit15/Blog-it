@@ -1,14 +1,23 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.utils import timezone
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,HttpResponse
 from .models import Post,Comment
 from django import forms
-from .forms import PostForm,CommentForm
-from django.shortcuts import redirect,render_to_response
+from .forms import PostForm,CommentForm,SignUpForm
+from django.shortcuts import redirect,render_to_response,render
 from django.contrib.auth import login,authenticate,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from django.contrib.auth.models import User
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_bytes,force_text
+from django.utils.http import urlsafe_base64_encode,urlsafe_base64_decode
+from django.template.loader import render_to_string
+from .tokens import account_activation_token
+from django.core.mail import EmailMessage
+
+
 #from .forms import UserRegistrationForm
 # git commit -a This is an important command.
 def post_list(request):
@@ -91,19 +100,25 @@ def signup(request):
     if request.user.is_authenticated:
         #print('Please logout before signing in.')
         return redirect('post_list')
-    if request.method=='POST':
-        form=UserCreationForm(request.POST)
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
         if form.is_valid():
-            form.save()
-            username=form.cleaned_data.get('Username')
-            t_password=form.cleaned_data.get('Password')
-            user=form.save()
-            login(request,user)
-            return redirect('/')
+            user = form.save(commit=False)
+            user.is_active = False
+            user.save()
+            current_site = get_current_site(request)
+            subject = 'Activate Your MySite Account'
+            message = render_to_string('blog/account_activation_email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),
+                'token': account_activation_token.make_token(user),
+            })
+            user.email_user(subject, message)
+            return redirect('account_activation_sent')
     else:
-        form=UserCreationForm()
-    return render(request,'blog/signup.html',{'form':form})
-
+        form = SignUpForm()
+    return render(request, 'blog/signup.html', {'form': form})
 def add_comment_to_post(request,pk):
     post=get_object_or_404(Post,pk=pk)
     if request.method=="POST":
@@ -142,3 +157,22 @@ def comment_remove(request,pk):
     comment=get_object_or_404(Comment,pk=pk)
     comment.delete()
     return redirect('post_detail', pk=comment.post.pk)
+
+def account_activation_sent(request):
+    return render(request, 'blog/account_activation_sent.html')
+
+def activate(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.profile.email_confirmed = True
+        user.save()
+        login(request, user)
+        return redirect('/')
+    else:
+        return render(request, 'blog/account_activation_invalid.html')
