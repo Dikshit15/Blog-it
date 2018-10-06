@@ -1,7 +1,7 @@
 {% load static %}
   <html>
     <head>
-        <title>HogwartsFan's</title>
+        <title>Your Blog</title>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
@@ -12,14 +12,15 @@
     <div class="page-header">
       {% if user.is_authenticated %}
 
-        <a href="{% url 'logout_view' %}" class="top-menu" title="Logout"><span class="glyphicon glyphicon-log-out"></span></a>
+        <!--<a href="{% url 'logout_view' %}" class="top-menu" title="Logout"><span class="glyphicon glyphicon-log-out"></span></a>-->
         <a href="{% url 'post_draft_list' %}" class="top-menu" title="Edit post"><span class="glyphicon glyphicon-edit"></span></a>
         <a href="{% url 'post_new' %}" class="top-menu" title="Create new post"><span class="glyphicon glyphicon-plus"></span></a>
+        <p class="top-menu"><b>Hello {{ user.username }}</b></style><small> (<a href="{% url 'logout' %}">Logout</a>)</small></p>
       {% else %}
         <a href="{% url 'login' %}" class="top-menu" title="Login"><span class="glyphicon glyphicon-lock"></span></a>
         <a href="{% url 'signup' %}" class="top-menu" title="Signup"><span class="glyphicon glyphicon-leaf"></span></a>
       {% endif %}
-        <h1><a href="/">Harry Potter Mania</a></h1>
+        <h1><a href="/">Your Blog</a></h1>
     </div>
     <div class="socialProfiles">
       <a href="mailto:dikshitmaheshwari15@gmail.com" target="_blank"><img src="https://png.icons8.com/ios/50/000000/google-logo-filled.png" class="btn-goog" alt="G-Mail" height="25" width=auto></a>

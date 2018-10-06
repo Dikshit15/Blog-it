@@ -142,9 +142,12 @@ def logout_view(request):
     logout(request)
     #return render_to_response('/^accounts/login/$',message='Goodbye. Looking forward to seeing you at PotterMania.')
     messages.success(request,'Goodbye. Looking forward to seeing you at PotterMania.',extra_tags='alert')
+    #return redirect('e')
     return redirect('signup')
-    #    return redirect('signup')
     #print(logout(request))
+
+#def enterpage(request):
+#    return redirect('blog/enterpage.html')
 
 @login_required
 def comment_approve(request,pk):
