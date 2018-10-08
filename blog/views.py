@@ -47,7 +47,9 @@ def post_new(request):
 @login_required
 def post_edit(request,pk):
     post=get_object_or_404(Post,pk=pk)
-    if request.method=="POST":
+    #if(post.author!=request.user):
+    #    return redirect('post_list',request)
+    if request.method=="POST" and post.author==request.user:
         form=PostForm(request.POST,instance=post)
         if form.is_valid:
             post=form.save(commit=False)
@@ -67,13 +69,15 @@ def post_draft_list(request):
 @login_required
 def post_publish(request,pk):
     post=get_object_or_404(Post,pk=pk)
-    post.publish()
+    if(post.author==request.user):
+        post.publish()
     return redirect('post_detail',pk=pk)
 
 @login_required
 def post_remove(request,pk):
     post=get_object_or_404(Post,pk=pk)
-    post.delete() #Every django model can be deleted by .delete().
+    if(post.author==request.user):
+        post.delete() #Every django model can be deleted by .delete().
     return redirect('post_list')
 
 """def register(request):
