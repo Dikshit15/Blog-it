@@ -4,7 +4,7 @@
 }
 body {
   padding-left: 15px;
-  background-color: lightgreen;
+  background-color: rgb(182, 25, 36);
 }
 .page-header{
   background-color: black;
@@ -12,7 +12,14 @@ body {
   padding: 20px 20px 20px 40px;
 }
 
-
+#particles-js {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -99999;
+}
 
 .socialProfiles{
     padding: 2px;
