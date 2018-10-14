@@ -18,6 +18,7 @@
         <a href="{% url 'post_draft_list' %}" class="top-menu" title="Edit post"><span class="glyphicon glyphicon-edit"></span></a>
         <a href="{% url 'post_new' %}" class="top-menu" title="Create new post"><span class="glyphicon glyphicon-plus"></span></a>
         <p class="top-menu"><b>Hello {{ user.username }}</b></style><small> (<a href="{% url 'logout' %}">Logout</a>)</small></p>
+        <a href="{% url 'change_password' %}" class="top-menu" title="Change Password"><span class="glyphicon glyphicon-unchecked"></span></a>
       {% else %}
         <a href="{% url 'login' %}" class="top-menu" title="Login"><span class="glyphicon glyphicon-lock"></span></a>
         <a href="{% url 'signup' %}" class="top-menu" title="Signup"><span class="glyphicon glyphicon-leaf"></span></a>

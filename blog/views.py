@@ -5,9 +5,9 @@ from .models import Post,Comment
 from django import forms
 from .forms import PostForm,CommentForm,SignUpForm
 from django.shortcuts import redirect,render_to_response,render
-from django.contrib.auth import login,authenticate,logout
+from django.contrib.auth import login,authenticate,logout,update_session_auth_hash
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm,PasswordChangeForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.sites.shortcuts import get_current_site
@@ -15,7 +15,7 @@ from django.utils.encoding import force_bytes,force_text
 from django.utils.http import urlsafe_base64_encode,urlsafe_base64_decode
 from django.template.loader import render_to_string
 from .tokens import account_activation_token
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage,send_mail
 
 
 #from .forms import UserRegistrationForm
@@ -183,3 +183,24 @@ def activate(request, uidb64, token):
         return redirect('/')
     else:
         return render(request, 'blog/account_activation_invalid.html')
+
+def change_password(request):
+    if request.method=='POST':
+        form=PasswordChangeForm(request.user,request.POST)
+        if form.is_valid():
+            user=form.save()
+            update_session_auth_hash(request,user)
+            messages.success(request,'Your password was successfully updated!')
+            send_mail(
+            'Password Change Request Status','Your request for password updation has been succesfully executed. Your password is succesfully changed.',
+            'dikshitmaheshwari15@gmail.com',['16ucc030@lnmiit.ac.in'],
+            )
+            #email.send()
+            return redirect('change_password')
+        else:
+            messages.error(request,'Please correct the error below.')
+    else:
+        form=PasswordChangeForm(request.user)
+    return render(request,'blog/change_password.html',{
+        'form':form
+    })
