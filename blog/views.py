@@ -198,7 +198,7 @@ def change_password(request):
             #email.send()
             return redirect('change_password')
         else:
-            messages.error(request,'Please correct the error below.')
+            messages.error(request,'Please correct the error below.',extra_tags='alert')
     else:
         form=PasswordChangeForm(request.user)
     return render(request,'blog/change_password.html',{
