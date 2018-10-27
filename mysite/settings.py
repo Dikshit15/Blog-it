@@ -138,11 +138,6 @@ LOGIN_REDIRECT_URL='/'
 #AUTHENTICATION_BACKENDS = ['accounts.authemail.EmailBackend']
 EMAIL_BACKEND ='django.core.mail.backends.console.EmailBackend'
 #EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-#EMAIL_USE_TLS = True
-#EMAIL_HOST = 'smtp.gmail.com'
-#EMAIL_HOST_USER = 'dikshitmaheshwari15@gmail.com'
-#EMAIL_HOST_PASSWORD = 'harrypotter'
-#EMAIL_PORT = 587
 from django.contrib.messages import constants as messages
 
 MESSAGE_TAGS = {
