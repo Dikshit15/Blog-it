@@ -80,26 +80,6 @@ def post_remove(request,pk):
         post.delete() #Every django model can be deleted by .delete().
     return redirect('post_list')
 
-"""def register(request):
-    if request.method=='POST':
-        form=UserRegistrationForm(request.POST)
-        if form.is_valid():
-            userObj=form.cleaned_data
-            username=userObj['username']
-            email=userObj['email']
-            password=userObj['password']
-            if not(User.objects.filter(username=username).exists() or User.objects.filter(email=email).exists()):
-                User.objects.create_user(username,email,password)
-                user=authenticate(username=username,password=password)
-                login(request,user)
-                return HttpResponseRedirect('/')
-            else:
-                raise forms.ValidationError('Looks like a username with that email or password already exists')
-    else:
-        UserRegistrationForm()
-
-    return render(request,'blog/register.html',{'form':form})"""
-
 def signup(request):
     if request.user.is_authenticated:
         #print('Please logout before signing in.')
@@ -149,9 +129,6 @@ def logout_view(request):
     #return redirect('e')
     return redirect('signup')
     #print(logout(request))
-
-#def enterpage(request):
-#    return redirect('blog/enterpage.html')
 
 @login_required
 def comment_approve(request,pk):
