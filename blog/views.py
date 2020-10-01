@@ -66,7 +66,7 @@ def post_draft_list(request):
     posts=Post.objects.filter(published_date__isnull=True).order_by('created_date')
     return render(request,'blog/post_draft_list.html',{'posts':posts})
 
-@login_required
+#Allow user to publish without log in.
 def post_publish(request,pk):
     post=get_object_or_404(Post,pk=pk)
     if(post.author==request.user):
@@ -170,7 +170,7 @@ def change_password(request):
             messages.success(request,'Your password was successfully updated!')
             send_mail(
             'Password Change Request Status','Your request for password updation has been succesfully executed. Your password is succesfully changed.',
-            'dikshitmaheshwari15@gmail.com',['16ucc030@lnmiit.ac.in'],
+            'dikshitmaheshwari15@gmail.com',['16uec004@lnmiit.ac.in'],
             )
             #email.send()
             return redirect('change_password')
