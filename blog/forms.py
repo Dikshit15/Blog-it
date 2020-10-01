@@ -16,7 +16,7 @@ class PostForm(forms.ModelForm):
         max_length=32
     )
     email=forms.CharField(
-        required=True,
+        required=false,
         label='Email-id',
         max_length=100,
     )
@@ -31,7 +31,7 @@ class CommentForm(forms.ModelForm):
 
     class Meta:
         model=Comment
-        fields=('author','text',)
+        fields=('author','text','date')
 
 #class SignUpForm(UserCreationForm):
 #    first_name=forms.CharField(max_length=30,required=False,help_text='Optional.')
